@@ -3,8 +3,8 @@
     - [Upgrade Guide](/docs/{{version}}/upgrade)
     - [Contribution Guide](/docs/{{version}}/contributions)
 - ## Getting Started
-    - [Installation](/docs/{{version}}/installation)
-    - [Configuration](/docs/{{version}}/configuration)
+    - [Instalación](/docs/{{version}}/installation)
+    - [Configuración](/docs/{{version}}/configuration)
     - [Directory Structure](/docs/{{version}}/structure)
     - [Frontend](/docs/{{version}}/frontend)
     - [Starter Kits](/docs/{{version}}/starter-kits)
