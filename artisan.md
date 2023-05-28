@@ -24,15 +24,15 @@
 - [Events](#events)
 
 <a name="introduction"></a>
-## Introduction
+## Introducción
 
-Artisan is the command line interface included with Laravel. Artisan exists at the root of your application as the `artisan` script and provides a number of helpful commands that can assist you while you build your application. To view a list of all available Artisan commands, you may use the `list` command:
+Artisan es la interfaz de línea de comandos incluida con Laravel. Artisan existe en la raíz de su aplicación como el script `artisan` y proporciona una serie de comandos útiles que pueden ayudarlo mientras construye su aplicación. Para ver una lista de todos los comandos Artisan disponibles, puede usar el comando `list`:
 
 ```shell
 php artisan list
 ```
 
-Every command also includes a "help" screen which displays and describes the command's available arguments and options. To view a help screen, precede the name of the command with `help`:
+Cada comando también incluye una pantalla de "ayuda" que muestra y describe los argumentos y opciones disponibles del comando. Para ver una pantalla de ayuda, anteponga `help` al nombre del comando:
 
 ```shell
 php artisan help migrate
@@ -41,7 +41,7 @@ php artisan help migrate
 <a name="laravel-sail"></a>
 #### Laravel Sail
 
-If you are using [Laravel Sail](/docs/{{version}}/sail) as your local development environment, remember to use the `sail` command line to invoke Artisan commands. Sail will execute your Artisan commands within your application's Docker containers:
+Si está usando [Laravel Sail](/docs/{{version}}/sail) como su entorno de desarrollo local, recuerde usar la línea de comando `sail` para invocar los comandos de Artisan. Sail ejecutará sus comandos Artisan dentro de los contenedores Docker de su aplicación:
 
 ```shell
 ./vendor/bin/sail artisan list
@@ -50,42 +50,42 @@ If you are using [Laravel Sail](/docs/{{version}}/sail) as your local developmen
 <a name="tinker"></a>
 ### Tinker (REPL)
 
-Laravel Tinker is a powerful REPL for the Laravel framework, powered by the [PsySH](https://github.com/bobthecow/psysh) package.
+Laravel Tinker es un potente REPL para el Framework de Laravel, impulsado por el paquete [PsySH](https://github.com/bobthecow/psysh).
 
 <a name="installation"></a>
-#### Installation
+#### Instalación
 
-All Laravel applications include Tinker by default. However, you may install Tinker using Composer if you have previously removed it from your application:
+Todas las aplicaciones de Laravel incluyen Tinker por defecto. Sin embargo, puede instalar Tinker usando Composer si lo ha eliminado previamente de su aplicación:
 
 ```shell
 composer require laravel/tinker
 ```
 
 > **Note**  
-> Looking for a graphical UI for interacting with your Laravel application? Check out [Tinkerwell](https://tinkerwell.app)!
+> ¿Busca una interfaz de usuario gráfica para interactuar con su aplicación Laravel? ¡Echa un vistazo a [Tinkerwell](https://tinkerwell.app)!
 
 <a name="usage"></a>
-#### Usage
+#### Uso
 
-Tinker allows you to interact with your entire Laravel application on the command line, including your Eloquent models, jobs, events, and more. To enter the Tinker environment, run the `tinker` Artisan command:
+Tinker le permite interactuar con toda su aplicación Laravel en la línea de comando, incluidos sus modelos, trabajos, eventos y más de Eloquent. Para ingresar al entorno Tinker, ejecute el comando `tinker` Artisan:
 
 ```shell
 php artisan tinker
 ```
 
-You can publish Tinker's configuration file using the `vendor:publish` command:
+Puedes publicar el archivo de configuración de Tinker usando el comando `vendor:publish`:
 
 ```shell
 php artisan vendor:publish --provider="Laravel\Tinker\TinkerServiceProvider"
 ```
 
 > **Warning**  
-> The `dispatch` helper function and `dispatch` method on the `Dispatchable` class depends on garbage collection to place the job on the queue. Therefore, when using tinker, you should use `Bus::dispatch` or `Queue::push` to dispatch jobs.
+> La función auxiliar `dispatch` y el método `dispatch` en la clase `Dispatchable` dependen de la recolección de elementos no utilizados para colocar el trabajo en la cola. Por lo tanto, al usar tinker, debe usar `Bus::dispatch` o `Queue::push` para enviar trabajos.
 
 <a name="command-allow-list"></a>
-#### Command Allow List
+#### Lista de comandos permitidos
 
-Tinker utilizes an "allow" list to determine which Artisan commands are allowed to be run within its shell. By default, you may run the `clear-compiled`, `down`, `env`, `inspire`, `migrate`, `optimize`, and `up` commands. If you would like to allow more commands you may add them to the `commands` array in your `tinker.php` configuration file:
+Tinker utiliza una lista de "permisos" para determinar qué comandos de Artisan pueden ejecutarse dentro de su shell. De forma predeterminada, puede ejecutar los comandos `clear-compiled`, `down`, `env`, `inspire`, `migrate`, `optimize` y `up`. Si desea permitir más comandos, puede agregarlos a la matriz `commands` en su archivo de configuración `tinker.php`:
 
     'commands' => [
         // App\Console\Commands\ExampleCommand::class,
@@ -94,32 +94,32 @@ Tinker utilizes an "allow" list to determine which Artisan commands are allowed 
 <a name="classes-that-should-not-be-aliased"></a>
 #### Classes That Should Not Be Aliased
 
-Typically, Tinker automatically aliases classes as you interact with them in Tinker. However, you may wish to never alias some classes. You may accomplish this by listing the classes in the `dont_alias` array of your `tinker.php` configuration file:
+Por lo general, Tinker crea automáticamente un alias de clases a medida que interactúa con ellas en Tinker. Sin embargo, es posible que desee nunca poner alias a algunas clases. Puede lograr esto enumerando las clases en la matriz `dont_alias` de su archivo de configuración `tinker.php`:
 
     'dont_alias' => [
         App\Models\User::class,
     ],
 
 <a name="writing-commands"></a>
-## Writing Commands
+## Comandos de escritura
 
-In addition to the commands provided with Artisan, you may build your own custom commands. Commands are typically stored in the `app/Console/Commands` directory; however, you are free to choose your own storage location as long as your commands can be loaded by Composer.
+Además de los comandos proporcionados con Artisan, puede crear sus propios comandos personalizados. Los comandos generalmente se almacenan en el directorio `app/Console/Commands`; sin embargo, usted es libre de elegir su propia ubicación de almacenamiento siempre que Composer pueda cargar sus comandos.
 
 <a name="generating-commands"></a>
-### Generating Commands
+### Generación de comandos
 
-To create a new command, you may use the `make:command` Artisan command. This command will create a new command class in the `app/Console/Commands` directory. Don't worry if this directory does not exist in your application - it will be created the first time you run the `make:command` Artisan command:
+Para crear un nuevo comando, puede usar el comando Artisan `make:command`. Este comando creará una nueva clase de comando en el directorio `app/Console/Commands`. No se preocupe si este directorio no existe en su aplicación; se creará la primera vez que ejecute el comando `make:command` de Artisan:
 
 ```shell
 php artisan make:command SendEmails
 ```
 
 <a name="command-structure"></a>
-### Command Structure
+### Estructura de mando
 
-After generating your command, you should define appropriate values for the `signature` and `description` properties of the class. These properties will be used when displaying your command on the `list` screen. The `signature` property also allows you to define [your command's input expectations](#defining-input-expectations). The `handle` method will be called when your command is executed. You may place your command logic in this method.
+Después de generar su comando, debe definir los valores apropiados para las propiedades `signature` y `description` de la clase. Estas propiedades se usarán cuando muestre su comando en la pantalla `list`. La propiedad `signature` también le permite definir [las expectativas de entrada de su comando](#defining-input-expectations). Se llamará al método `handle` cuando se ejecute su comando. Puede colocar su lógica de comando en este método.
 
-Let's take a look at an example command. Note that we are able to request any dependencies we need via the command's `handle` method. The Laravel [service container](/docs/{{version}}/container) will automatically inject all dependencies that are type-hinted in this method's signature:
+Echemos un vistazo a un comando de ejemplo. Tenga en cuenta que podemos solicitar cualquier dependencia que necesitemos a través del método `handle` del comando. El Laravel [contenedor de servicios](/docs/{{version}}/container) inyectará automáticamente todas las dependencias que tienen sugerencias de tipo en la firma de este método:
 
     <?php
 
@@ -155,33 +155,33 @@ Let's take a look at an example command. Note that we are able to request any de
     }
 
 > **Note**  
-> For greater code reuse, it is good practice to keep your console commands light and let them defer to application services to accomplish their tasks. In the example above, note that we inject a service class to do the "heavy lifting" of sending the e-mails.
+> Para una mayor reutilización del código, es una buena práctica mantener los comandos de la consola livianos y dejar que se remitan a los servicios de la aplicación para realizar sus tareas. En el ejemplo anterior, tenga en cuenta que inyectamos una clase de servicio para hacer el "trabajo pesado" de enviar los correos electrónicos.
 
 <a name="closure-commands"></a>
-### Closure Commands
+### Comandos de cierre
 
-Closure based commands provide an alternative to defining console commands as classes. In the same way that route closures are an alternative to controllers, think of command closures as an alternative to command classes. Within the `commands` method of your `app/Console/Kernel.php` file, Laravel loads the `routes/console.php` file:
+Los comandos basados ​​en cierre proporcionan una alternativa a la definición de comandos de consola como clases. De la misma manera que los cierres de rutas son una alternativa a los controladores, piense en los cierres de comandos como una alternativa a las clases de comandos. Dentro del método `commands` de su archivo `app/Console/Kernel.php`, Laravel carga el archivo `routes/console.php`:
 
     /**
-     * Register the closure based commands for the application.
+     * Registre los comandos basados ​​en cierre para la aplicación.
      */
     protected function commands(): void
     {
         require base_path('routes/console.php');
     }
 
-Even though this file does not define HTTP routes, it defines console based entry points (routes) into your application. Within this file, you may define all of your closure based console commands using the `Artisan::command` method. The `command` method accepts two arguments: the [command signature](#defining-input-expectations) and a closure which receives the command's arguments and options:
+Aunque este archivo no define rutas HTTP, define puntos de entrada (rutas) basados ​​en la consola en su aplicación. Dentro de este archivo, puede definir todos sus comandos de consola basados ​​en el cierre usando el método `Artisan::command`. El método `command` acepta dos argumentos: la [firma del comando](#defining-input-expectations)y un cierre que recibe los argumentos y opciones del comando:
 
     Artisan::command('mail:send {user}', function (string $user) {
-        $this->info("Sending email to: {$user}!");
+        $this->info("Enviando correo electrónico a: {$user}!");
     });
 
-The closure is bound to the underlying command instance, so you have full access to all of the helper methods you would typically be able to access on a full command class.
+El cierre está vinculado a la instancia de comando subyacente, por lo que tiene acceso completo a todos los métodos auxiliares a los que normalmente podría acceder en una clase de comando completa.
 
 <a name="type-hinting-dependencies"></a>
-#### Type-Hinting Dependencies
+#### Dependencias de sugerencia de tipo
 
-In addition to receiving your command's arguments and options, command closures may also type-hint additional dependencies that you would like resolved out of the [service container](/docs/{{version}}/container):
+Además de recibir los argumentos y las opciones de su comando, los cierres de comandos también pueden indicar dependencias adicionales que le gustaría resolver fuera del [contenedor de servicio](/docs/{{version}}/container):
 
     use App\Models\User;
     use App\Support\DripEmailer;
@@ -191,21 +191,21 @@ In addition to receiving your command's arguments and options, command closures 
     });
 
 <a name="closure-command-descriptions"></a>
-#### Closure Command Descriptions
+#### Descripciones de los comandos de cierre
 
-When defining a closure based command, you may use the `purpose` method to add a description to the command. This description will be displayed when you run the `php artisan list` or `php artisan help` commands:
+Al definir un comando basado en el cierre, puede usar el `purpose` para agregar una descripción al comando. Esta descripción se mostrará cuando ejecute el comando `php artisan list` o `php artisan help`:
 
     Artisan::command('mail:send {user}', function (string $user) {
         // ...
-    })->purpose('Send a marketing email to a user');
+    })->purpose('Enviar un correo electrónico de marketing a un usuario');
 
 <a name="isolatable-commands"></a>
-### Isolatable Commands
+### Comandos aislables
 
 > **Warning**
-> To utilize this feature, your application must be using the `memcached`, `redis`, `dynamodb`, `database`, `file`, or `array` cache driver as your application's default cache driver. In addition, all servers must be communicating with the same central cache server.
+> Para utilizar esta característica, su aplicación debe estar usando el controlador de caché `memcached`, `redis`, `dynamodb`, `database`, `file`, o `array` como el controlador de caché predeterminado de su aplicación. Además, todos los servidores deben comunicarse con el mismo servidor de caché central.
 
-Sometimes you may wish to ensure that only one instance of a command can run at a time. To accomplish this, you may implement the `Illuminate\Contracts\Console\Isolatable` interface on your command class:
+En ocasiones, es posible que desee asegurarse de que solo se pueda ejecutar una instancia de un comando a la vez. Para lograr esto, puede implementar la interfaz `Illuminate\Contracts\Console\Isolatable` en tu clase de comando:
 
     <?php
 
@@ -219,29 +219,29 @@ Sometimes you may wish to ensure that only one instance of a command can run at 
         // ...
     }
 
-When a command is marked as `Isolatable`, Laravel will automatically add an `--isolated` option to the command. When the command is invoked with that option, Laravel will ensure that no other instances of that command are already running. Laravel accomplishes this by attempting to acquire an atomic lock using your application's default cache driver. If other instances of the command are running, the command will not execute; however, the command will still exit with a successful exit status code:
+Cuando un comando se marca como`Isolatable`, Laravel agregará automáticamente un `--isolated` opción al comando. Cuando se invoca el comando con esa opción, Laravel se asegurará de que no se estén ejecutando otras instancias de ese comando. Laravel logra esto al intentar adquirir un bloqueo atómico utilizando el controlador de caché predeterminado de su aplicación. Si se están ejecutando otras instancias del comando, el comando no se ejecutará; sin embargo, el comando seguirá saliendo con un código de estado de salida exitoso:
 
 ```shell
 php artisan mail:send 1 --isolated
 ```
 
-If you would like to specify the exit status code that the command should return if it is not able to execute, you may provide the desired status code via the `isolated` option:
+Si desea especificar el código de estado de salida que debe devolver el comando si no se puede ejecutar, puede proporcionar el código de estado deseado a través de la opción`isolated`:
 
 ```shell
 php artisan mail:send 1 --isolated=12
 ```
 
 <a name="lock-expiration-time"></a>
-#### Lock Expiration Time
+#### Tiempo de caducidad del bloqueo
 
-By default, isolation locks expire after the command is finished. Or, if the command is interrupted and unable to finish, the lock will expire after one hour. However, you may adjust the lock expiration time by defining a `isolationLockExpiresAt` method on your command:
+De forma predeterminada, los bloqueos de aislamiento caducan una vez finalizado el comando. O, si el comando se interrumpe y no puede finalizar, el bloqueo caducará después de una hora. Sin embargo, puede ajustar el tiempo de caducidad del bloqueo definiendo un método `isolationLockExpiresAt` a tu comando:
 
 ```php
 use DateTimeInterface;
 use DateInterval;
 
 /**
- * Determine when an isolation lock expires for the command.
+ * Determine cuándo caduca un bloqueo de aislamiento para el comando.
  */
 public function isolationLockExpiresAt(): DateTimeInterface|DateInterval
 {
@@ -250,120 +250,120 @@ public function isolationLockExpiresAt(): DateTimeInterface|DateInterval
 ```
 
 <a name="defining-input-expectations"></a>
-## Defining Input Expectations
+## Definición de expectativas de entrada
 
-When writing console commands, it is common to gather input from the user through arguments or options. Laravel makes it very convenient to define the input you expect from the user using the `signature` property on your commands. The `signature` property allows you to define the name, arguments, and options for the command in a single, expressive, route-like syntax.
+Al escribir comandos de consola, es común recopilar información del usuario a través de argumentos u opciones. Laravel hace que sea muy conveniente definir la entrada que espera del usuario que usa la propiedad `signature` en tus comandos. La propiedad `signature` le permite definir el nombre, los argumentos y las opciones para el comando en una sintaxis única, expresiva y similar a una ruta.
 
 <a name="arguments"></a>
-### Arguments
+### Argumentos
 
-All user supplied arguments and options are wrapped in curly braces. In the following example, the command defines one required argument: `user`:
+Todos los argumentos y opciones proporcionados por el usuario están entre llaves. En el siguiente ejemplo, el comando define un argumento requerido: `user`:
 
     /**
-     * The name and signature of the console command.
+     * El nombre y la firma del comando de la consola.
      *
      * @var string
      */
     protected $signature = 'mail:send {user}';
 
-You may also make arguments optional or define default values for arguments:
+También puede hacer que los argumentos sean opcionales o definir valores predeterminados para los argumentos:
 
-    // Optional argument...
+    // Argumento opcional...
     'mail:send {user?}'
 
-    // Optional argument with default value...
+    // Argumento opcional con valor predeterminado...
     'mail:send {user=foo}'
 
 <a name="options"></a>
-### Options
+### Opciones
 
-Options, like arguments, are another form of user input. Options are prefixed by two hyphens (`--`) when they are provided via the command line. There are two types of options: those that receive a value and those that don't. Options that don't receive a value serve as a boolean "switch". Let's take a look at an example of this type of option:
+Las opciones, como los argumentos, son otra forma de entrada del usuario. Las opciones van precedidas de dos guiones (`--`) cuando se proporcionan a través de la línea de comandos. Hay dos tipos de opciones: las que reciben un valor y las que no. Las opciones que no reciben un valor sirven como un "cambio" booleano. Veamos un ejemplo de este tipo de opción:
 
     /**
-     * The name and signature of the console command.
+     * El nombre y la firma del comando de la consola.
      *
      * @var string
      */
     protected $signature = 'mail:send {user} {--queue}';
 
-In this example, the `--queue` switch may be specified when calling the Artisan command. If the `--queue` switch is passed, the value of the option will be `true`. Otherwise, the value will be `false`:
+En este ejemplo, el interruptor `--queue`se puede especificar al llamar al comando Artisan. Si el interruptor `--queue` se ha definido, el valor de la opción será `true`. De lo contrario, el valor será `false`:
 
 ```shell
 php artisan mail:send 1 --queue
 ```
 
 <a name="options-with-values"></a>
-#### Options With Values
+#### Opciones con valores
 
-Next, let's take a look at an option that expects a value. If the user must specify a value for an option, you should suffix the option name with a `=` sign:
+A continuación, echemos un vistazo a una opción que espera un valor. Si el usuario debe especificar un valor para una opción, debe agregar el sufijo del nombre de la opción con un signo `=`:
 
     /**
-     * The name and signature of the console command.
+     * El nombre y la firma del comando de la consola.
      *
      * @var string
      */
     protected $signature = 'mail:send {user} {--queue=}';
 
-In this example, the user may pass a value for the option like so. If the option is not specified when invoking the command, its value will be `null`:
+En este ejemplo, el usuario puede pasar un valor para la opción así. Si no se especifica la opción al invocar el comando, su valor será `null`:
 
 ```shell
 php artisan mail:send 1 --queue=default
 ```
 
-You may assign default values to options by specifying the default value after the option name. If no option value is passed by the user, the default value will be used:
+Puede asignar valores predeterminados a las opciones especificando el valor predeterminado después del nombre de la opción. Si el usuario no pasa ningún valor de opción, se utilizará el valor predeterminado:
 
     'mail:send {user} {--queue=default}'
 
 <a name="option-shortcuts"></a>
-#### Option Shortcuts
+#### Atajos de opciones
 
-To assign a shortcut when defining an option, you may specify it before the option name and use the `|` character as a delimiter to separate the shortcut from the full option name:
+Para asignar un atajo al definir una opción, puede especificarlo antes del nombre de la opción y usar el carácter `|` como delimitador para separar el atajo del nombre completo de la opción:
 
     'mail:send {user} {--Q|queue}'
 
-When invoking the command on your terminal, option shortcuts should be prefixed with a single hyphen and no `=` character should be included when specifying a value for the option:
+Al invocar el comando en su terminal, los accesos directos de opciones deben tener un solo guión como prefijo y no se debe incluir ningún carácter `=` al especificar un valor para la opción:la opción:
 
 ```shell
 php artisan mail:send 1 -Qdefault
 ```
 
 <a name="input-arrays"></a>
-### Input Arrays
+### Matrices de entrada
 
-If you would like to define arguments or options to expect multiple input values, you may use the `*` character. First, let's take a look at an example that specifies such an argument:
+Si desea definir argumentos u opciones para esperar múltiples valores de entrada, puede usar el carácter `*`. Primero, echemos un vistazo a un ejemplo que especifica tal argumento:
 
     'mail:send {user*}'
 
-When calling this method, the `user` arguments may be passed in order to the command line. For example, the following command will set the value of `user` to an array with `1` and `2` as its values:
+Al llamar a este método, los argumentos `user` se pueden pasar en orden a la línea de comando. Por ejemplo, el siguiente comando establecerá el valor de `user` en una matriz con `1` y `2` como sus valores:
 
 ```shell
 php artisan mail:send 1 2
 ```
 
-This `*` character can be combined with an optional argument definition to allow zero or more instances of an argument:
+Este carácter `*` se puede combinar con una definición de argumento opcional para permitir cero o más instancias de un argumento:
 
     'mail:send {user?*}'
 
 <a name="option-arrays"></a>
-#### Option Arrays
+#### Matrices de opciones
 
-When defining an option that expects multiple input values, each option value passed to the command should be prefixed with the option name:
+Al definir una opción que espera múltiples valores de entrada, cada valor de opción pasado al comando debe tener como prefijo el nombre de la opción:
 
     'mail:send {--id=*}'
 
-Such a command may be invoked by passing multiple `--id` arguments:
+Tal comando puede invocarse pasando múltiples argumentos `--id`:
 
 ```shell
 php artisan mail:send --id=1 --id=2
 ```
 
 <a name="input-descriptions"></a>
-### Input Descriptions
+### Descripciones de entrada
 
-You may assign descriptions to input arguments and options by separating the argument name from the description using a colon. If you need a little extra room to define your command, feel free to spread the definition across multiple lines:
+Puede asignar descripciones a argumentos de entrada y opciones separando el nombre del argumento de la descripción mediante dos puntos. Si necesita un poco más de espacio para definir su comando, siéntase libre de distribuir la definición en varias líneas:
 
     /**
-     * The name and signature of the console command.
+     * El nombre y la firma del comando de la consola.
      *
      * @var string
      */
@@ -372,40 +372,40 @@ You may assign descriptions to input arguments and options by separating the arg
                             {--queue : Whether the job should be queued}';
 
 <a name="command-io"></a>
-## Command I/O
+## E/S de comando
 
 <a name="retrieving-input"></a>
-### Retrieving Input
+### Recuperando entrada
 
-While your command is executing, you will likely need to access the values for the arguments and options accepted by your command. To do so, you may use the `argument` and `option` methods. If an argument or option does not exist, `null` will be returned:
+Mientras se ejecuta su comando, es probable que necesite acceder a los valores de los argumentos y opciones aceptados por su comando. Para ello, puede utilizar los métodos `argument` y `option`. Si un argumento u opción no existe, se devolverá `null`:
 
     /**
-     * Execute the console command.
+     * Ejecute el comando de la consola.
      */
     public function handle(): void
     {
         $userId = $this->argument('user');
     }
 
-If you need to retrieve all of the arguments as an `array`, call the `arguments` method:
+Si necesita recuperar todos los argumentos como un `array`, llame al método `arguments`:
 
     $arguments = $this->arguments();
 
-Options may be retrieved just as easily as arguments using the `option` method. To retrieve all of the options as an array, call the `options` method:
+Las opciones se pueden recuperar tan fácilmente como los argumentos utilizando el método `option`. Para recuperar todas las opciones como una matriz, llama al método `options`:
 
-    // Retrieve a specific option...
+    // Recuperar una opción específica...
     $queueName = $this->option('queue');
 
-    // Retrieve all options as an array...
+    // Recuperar todas las opciones como una matriz...
     $options = $this->options();
 
 <a name="prompting-for-input"></a>
-### Prompting For Input
+### Solicitud de entrada
 
-In addition to displaying output, you may also ask the user to provide input during the execution of your command. The `ask` method will prompt the user with the given question, accept their input, and then return the user's input back to your command:
+Además de mostrar la salida, también puede pedirle al usuario que proporcione información durante la ejecución de su comando. El método `ask` le pedirá al usuario la pregunta dada, aceptará su entrada y luego devolverá la entrada del usuario a su comando:
 
     /**
-     * Execute the console command.
+     * Ejecute el comando de la consola.
      */
     public function handle(): void
     {
@@ -414,107 +414,107 @@ In addition to displaying output, you may also ask the user to provide input dur
         // ...
     }
 
-The `secret` method is similar to `ask`, but the user's input will not be visible to them as they type in the console. This method is useful when asking for sensitive information such as passwords:
+El método `secret` es similar a `ask`, pero la entrada del usuario no será visible para ellos mientras escriben en la consola. Este método es útil cuando se solicita información confidencial, como contraseñas:
 
-    $password = $this->secret('What is the password?');
+    $password = $this->secret('¿Cual es la contraseña?');
 
 <a name="asking-for-confirmation"></a>
-#### Asking For Confirmation
+#### Pidiendo Confirmación
 
-If you need to ask the user for a simple "yes or no" confirmation, you may use the `confirm` method. By default, this method will return `false`. However, if the user enters `y` or `yes` in response to the prompt, the method will return `true`.
+Si necesita pedirle al usuario una simple confirmación de "sí o no", puede usar el método `confirm`. De forma predeterminada, este método devolverá `false`. Sin embargo, si el usuario ingresa `y` o `yes` en respuesta al aviso, el método devolverá `true`.
 
-    if ($this->confirm('Do you wish to continue?')) {
+    if ($this->confirm('¿Desea continuar?')) {
         // ...
     }
 
-If necessary, you may specify that the confirmation prompt should return `true` by default by passing `true` as the second argument to the `confirm` method:
+Si es necesario, puede especificar que la solicitud de confirmación devuelva `true` de forma predeterminada al pasar `true` como segundo argumento del método `confirm`:
 
-    if ($this->confirm('Do you wish to continue?', true)) {
+    if ($this->confirm('¿Desea continuar?', true)) {
         // ...
     }
 
 <a name="auto-completion"></a>
-#### Auto-Completion
+#### Autocompletar
 
-The `anticipate` method can be used to provide auto-completion for possible choices. The user can still provide any answer, regardless of the auto-completion hints:
+El método `anticipate` se puede utilizar para proporcionar autocompletado para posibles opciones. El usuario aún puede proporcionar cualquier respuesta, independientemente de las sugerencias de autocompletado:
 
-    $name = $this->anticipate('What is your name?', ['Taylor', 'Dayle']);
+    $name = $this->anticipate('¿Cómo te llamas?', ['Juan', 'Daniel']);
 
-Alternatively, you may pass a closure as the second argument to the `anticipate` method. The closure will be called each time the user types an input character. The closure should accept a string parameter containing the user's input so far, and return an array of options for auto-completion:
+Alternativamente, puede pasar un cierre como segundo argumento al método `anticipate`. El cierre se llamará cada vez que el usuario escriba un carácter de entrada. El cierre debe aceptar un parámetro de cadena que contenga la entrada del usuario hasta el momento y devolver una serie de opciones para completar automáticamente:
 
-    $name = $this->anticipate('What is your address?', function (string $input) {
-        // Return auto-completion options...
+    $name = $this->anticipate('¿Cuál es su dirección?', function (string $input) {
+        // Devolver opciones de autocompletado...
     });
 
 <a name="multiple-choice-questions"></a>
-#### Multiple Choice Questions
+#### Preguntas de respuestas múltiples
 
-If you need to give the user a predefined set of choices when asking a question, you may use the `choice` method. You may set the array index of the default value to be returned if no option is chosen by passing the index as the third argument to the method:
+Si necesita darle al usuario un conjunto predefinido de opciones al hacer una pregunta, puede usar el método `choice`. Puede establecer el índice de matriz del valor predeterminado que se devolverá si no se elige ninguna opción pasando el índice como el tercer argumento del método:
 
     $name = $this->choice(
-        'What is your name?',
-        ['Taylor', 'Dayle'],
+        '¿Cómo te llamas?',
+        ['Juan', 'Daniel'],
         $defaultIndex
     );
 
-In addition, the `choice` method accepts optional fourth and fifth arguments for determining the maximum number of attempts to select a valid response and whether multiple selections are permitted:
+Además, el método `choice` acepta argumentos opcionales cuarto y quinto para determinar el número máximo de intentos para seleccionar una respuesta válida y si se permiten selecciones múltiples:
 
     $name = $this->choice(
-        'What is your name?',
-        ['Taylor', 'Dayle'],
+        '¿Cómo te llamas?',
+        ['Juan', 'Daniel'],
         $defaultIndex,
         $maxAttempts = null,
         $allowMultipleSelections = false
     );
 
 <a name="writing-output"></a>
-### Writing Output
+### Salida de escritura
 
-To send output to the console, you may use the `line`, `info`, `comment`, `question`, `warn`, and `error` methods. Each of these methods will use appropriate ANSI colors for their purpose. For example, let's display some general information to the user. Typically, the `info` method will display in the console as green colored text:
+Para enviar resultados a la consola, puede utilizar los métodos `line`, `info`, `comment`, `question`, `warn` y `error`. Cada uno de estos métodos utilizará colores ANSI apropiados para su propósito. Por ejemplo, mostremos información general al usuario. Normalmente, el método `info` se mostrará en la consola como texto de color verde:
 
     /**
-     * Execute the console command.
+     * Ejecute el comando de la consola.
      */
     public function handle(): void
     {
         // ...
 
-        $this->info('The command was successful!');
+        $this->info('¡El comando fue exitoso!');
     }
 
-To display an error message, use the `error` method. Error message text is typically displayed in red:
+Para mostrar un mensaje de error, utilice el método `error`. El texto del mensaje de error generalmente se muestra en rojo:
 
     $this->error('Something went wrong!');
 
-You may use the `line` method to display plain, uncolored text:
+Puede utilizar el método `line` para mostrar texto sin formato y sin color:
 
     $this->line('Display this on the screen');
 
-You may use the `newLine` method to display a blank line:
+Puede usar el método `newLine` para mostrar una línea en blanco:
 
-    // Write a single blank line...
+    // Escribe una sola línea en blanco...
     $this->newLine();
 
-    // Write three blank lines...
+    // Escribe tres líneas en blanco...
     $this->newLine(3);
 
 <a name="tables"></a>
-#### Tables
+#### Mesas
 
-The `table` method makes it easy to correctly format multiple rows / columns of data. All you need to do is provide the column names and the data for the table and Laravel will
-automatically calculate the appropriate width and height of the table for you:
+El método `table` facilita el formateo correcto de múltiples filas/columnas de datos. Todo lo que necesita hacer es proporcionar los nombres de las columnas y los datos de la tabla y Laravel
+calcule automáticamente el ancho y la altura apropiados de la mesa para usted:
 
     use App\Models\User;
 
     $this->table(
-        ['Name', 'Email'],
+        ['Nombre', 'Correo electrónico'],
         User::all(['name', 'email'])->toArray()
     );
 
 <a name="progress-bars"></a>
-#### Progress Bars
+#### Barras de progreso
 
-For long running tasks, it can be helpful to show a progress bar that informs users how complete the task is. Using the `withProgressBar` method, Laravel will display a progress bar and advance its progress for each iteration over a given iterable value:
+Para tareas de ejecución prolongada, puede ser útil mostrar una barra de progreso que informe a los usuarios qué tan completa está la tarea. Usando el método `withProgressBar`, Laravel mostrará una barra de progreso y avanzará su progreso para cada iteración sobre un valor iterable dado:
 
     use App\Models\User;
 
@@ -522,7 +522,7 @@ For long running tasks, it can be helpful to show a progress bar that informs us
         $this->performTask($user);
     });
 
-Sometimes, you may need more manual control over how a progress bar is advanced. First, define the total number of steps the process will iterate through. Then, advance the progress bar after processing each item:
+A veces, es posible que necesite más control manual sobre cómo avanza una barra de progreso. Primero, defina el número total de pasos que recorrerá el proceso. Luego, avance la barra de progreso después de procesar cada elemento:
 
     $users = App\Models\User::all();
 
@@ -539,15 +539,15 @@ Sometimes, you may need more manual control over how a progress bar is advanced.
     $bar->finish();
 
 > **Note**  
-> For more advanced options, check out the [Symfony Progress Bar component documentation](https://symfony.com/doc/current/components/console/helpers/progressbar.html).
+> Para obtener opciones más avanzadas, consulta la [documentación del componente Barra de progreso de Symfony](https://symfony.com/doc/current/components/console/helpers/progressbar.html).
 
 <a name="registering-commands"></a>
-## Registering Commands
+## Registro de comandos
 
-All of your console commands are registered within your application's `App\Console\Kernel` class, which is your application's "console kernel". Within the `commands` method of this class, you will see a call to the kernel's `load` method. The `load` method will scan the `app/Console/Commands` directory and automatically register each command it contains with Artisan. You are even free to make additional calls to the `load` method to scan other directories for Artisan commands:
+Todos los comandos de su consola están registrados dentro de la clase `App\Console\Kernel` de su aplicación, que es el "núcleo de la consola" de su aplicación. Dentro del método `commands` de esta clase, verá una llamada al método `load` del núcleo. El método `load` escaneará el directorio `app/Console/Commands` y registrará automáticamente cada comando que contiene con Artisan. Incluso puede realizar llamadas adicionales al método `load` para escanear otros directorios en busca de comandos de Artisan:
 
     /**
-     * Register the commands for the application.
+     * Registre los comandos para la aplicación.
      */
     protected function commands(): void
     {
@@ -557,16 +557,16 @@ All of your console commands are registered within your application's `App\Conso
         // ...
     }
 
-If necessary, you may manually register commands by adding the command's class name to a `$commands` property within your `App\Console\Kernel` class. If this property is not already defined on your kernel, you should define it manually. When Artisan boots, all the commands listed in this property will be resolved by the [service container](/docs/{{version}}/container) and registered with Artisan:
+Si es necesario, puede registrar comandos manualmente agregando el nombre de clase del comando a una propiedad `$commands` dentro de su clase `App\Console\Kernel`. Si esta propiedad aún no está definida en su kernel, debe definirla manualmente. Cuando se inicia Artisan, todos los comandos enumerados en esta propiedad serán resueltos por el [contenedor de servicio](/docs/{{version}}/container) y registrado con Artisan:
 
     protected $commands = [
         Commands\SendEmails::class
     ];
 
 <a name="programmatically-executing-commands"></a>
-## Programmatically Executing Commands
+## Ejecución programática de comandos
 
-Sometimes you may wish to execute an Artisan command outside of the CLI. For example, you may wish to execute an Artisan command from a route or controller. You may use the `call` method on the `Artisan` facade to accomplish this. The `call` method accepts either the command's signature name or class name as its first argument, and an array of command parameters as the second argument. The exit code will be returned:
+A veces, es posible que desee ejecutar un comando de Artisan fuera de la CLI. Por ejemplo, es posible que desee ejecutar un comando de Artisan desde una ruta o un controlador. Puede usar el método `call` en la fachada `Artisan` para lograr esto. El método `call` acepta el nombre de la firma del comando o el nombre de la clase como primer argumento, y una matriz de parámetros del comando como segundo argumento. El código de salida será devuelto:
 
     use Illuminate\Support\Facades\Artisan;
 
@@ -578,14 +578,14 @@ Sometimes you may wish to execute an Artisan command outside of the CLI. For exa
         // ...
     });
 
-Alternatively, you may pass the entire Artisan command to the `call` method as a string:
+Alternativamente, puede pasar el comando completo de Artisan al método `call` como una cadena:
 
     Artisan::call('mail:send 1 --queue=default');
 
 <a name="passing-array-values"></a>
-#### Passing Array Values
+#### Pasar valores de matriz
 
-If your command defines an option that accepts an array, you may pass an array of values to that option:
+Si su comando define una opción que acepta una matriz, puede pasar una matriz de valores a esa opción:
 
     use Illuminate\Support\Facades\Artisan;
 
@@ -596,18 +596,18 @@ If your command defines an option that accepts an array, you may pass an array o
     });
 
 <a name="passing-boolean-values"></a>
-#### Passing Boolean Values
+#### Pasar valores booleanos
 
-If you need to specify the value of an option that does not accept string values, such as the `--force` flag on the `migrate:refresh` command, you should pass `true` or `false` as the value of the option:
+Si necesita especificar el valor de una opción que no acepta valores de cadena, como el indicador `--force` en el comando `migrate:refresh`, debe pasar `true` o `false` como el valor de la opción:
 
     $exitCode = Artisan::call('migrate:refresh', [
         '--force' => true,
     ]);
 
 <a name="queueing-artisan-commands"></a>
-#### Queueing Artisan Commands
+#### Comandos artesanales en cola
 
-Using the `queue` method on the `Artisan` facade, you may even queue Artisan commands so they are processed in the background by your [queue workers](/docs/{{version}}/queues). Before using this method, make sure you have configured your queue and are running a queue listener:
+Usando el método `queue` en la fachada de `Artisan`, puede incluso poner en cola los comandos de Artisan para que sean procesados ​​en segundo plano por sus [trabajadores de la cola](/docs/{{version}}/queues). Antes de usar este método, asegúrese de haber configurado su cola y de estar ejecutando un oyente de cola:
 
     use Illuminate\Support\Facades\Artisan;
 
@@ -619,19 +619,19 @@ Using the `queue` method on the `Artisan` facade, you may even queue Artisan com
         // ...
     });
 
-Using the `onConnection` and `onQueue` methods, you may specify the connection or queue the Artisan command should be dispatched to:
+Usando los métodos `onConnection` y `onQueue`, puede especificar la conexión o la cola a la que se debe enviar el comando Artisan:
 
     Artisan::queue('mail:send', [
         'user' => 1, '--queue' => 'default'
     ])->onConnection('redis')->onQueue('commands');
 
 <a name="calling-commands-from-other-commands"></a>
-### Calling Commands From Other Commands
+### Llamar comandos desde otros comandos
 
-Sometimes you may wish to call other commands from an existing Artisan command. You may do so using the `call` method. This `call` method accepts the command name and an array of command arguments / options:
+En ocasiones, es posible que desee llamar a otros comandos desde un comando Artisan existente. Puede hacerlo utilizando el método `call`. Este método `call` acepta el nombre del comando y una serie de argumentos/opciones del comando:
 
     /**
-     * Execute the console command.
+     * Ejecute el comando de la consola.
      */
     public function handle(): void
     {
@@ -642,19 +642,19 @@ Sometimes you may wish to call other commands from an existing Artisan command. 
         // ...
     }
 
-If you would like to call another console command and suppress all of its output, you may use the `callSilently` method. The `callSilently` method has the same signature as the `call` method:
+Si desea llamar a otro comando de la consola y suprimir toda su salida, puede usar el método `callSilently`. El método `callSilently` tiene la misma firma que el método `call`:
 
     $this->callSilently('mail:send', [
         'user' => 1, '--queue' => 'default'
     ]);
 
 <a name="signal-handling"></a>
-## Signal Handling
+## Manejo de señales
 
-As you may know, operating systems allow signals to be sent to running processes. For example, the `SIGTERM` signal is how operating systems ask a program to terminate. If you wish to listen for signals in your Artisan console commands and execute code when they occur, you may use the `trap` method:
+Como sabrá, los sistemas operativos permiten que se envíen señales a los procesos en ejecución. Por ejemplo, la señal `SIGTERM` es cómo los sistemas operativos le piden a un programa que termine. Si desea escuchar señales en los comandos de su consola Artisan y ejecutar código cuando ocurran, puede usar el método `trap`:
 
     /**
-     * Execute the console command.
+     * Ejecute el comando de la consola.
      */
     public function handle(): void
     {
@@ -665,7 +665,7 @@ As you may know, operating systems allow signals to be sent to running processes
         }
     }
 
-To listen for multiple signals at once, you may provide an array of signals to the `trap` method:
+Para escuchar varias señales a la vez, puede proporcionar una serie de señales al método `trap`:
 
     $this->trap([SIGTERM, SIGQUIT], function (int $signal) {
         $this->shouldKeepRunning = false;
@@ -674,17 +674,17 @@ To listen for multiple signals at once, you may provide an array of signals to t
     });
 
 <a name="stub-customization"></a>
-## Stub Customization
+## Personalización de talones
 
-The Artisan console's `make` commands are used to create a variety of classes, such as controllers, jobs, migrations, and tests. These classes are generated using "stub" files that are populated with values based on your input. However, you may want to make small changes to files generated by Artisan. To accomplish this, you may use the `stub:publish` command to publish the most common stubs to your application so that you can customize them:
+Los comandos `make` de la consola Artisan se utilizan para crear una variedad de clases, como controladores, trabajos, migraciones y pruebas. Estas clases se generan utilizando archivos "stub" que se completan con valores basados ​​en su entrada. Sin embargo, es posible que desee realizar pequeños cambios en los archivos generados por Artisan. Para lograr esto, puede usar el comando `stub:publish` para publicar los stubs más comunes en su aplicación para que pueda personalizarlos:
 
 ```shell
 php artisan stub:publish
 ```
 
-The published stubs will be located within a `stubs` directory in the root of your application. Any changes you make to these stubs will be reflected when you generate their corresponding classes using Artisan's `make` commands.
+Los stubs publicados se ubicarán dentro de un directorio `stubs` en la raíz de su aplicación. Cualquier cambio que realice en estos stubs se reflejará cuando genere sus clases correspondientes utilizando los comandos `make` de Artisan.
 
 <a name="events"></a>
-## Events
+## Eventos
 
-Artisan dispatches three events when running commands: `Illuminate\Console\Events\ArtisanStarting`, `Illuminate\Console\Events\CommandStarting`, and `Illuminate\Console\Events\CommandFinished`. The `ArtisanStarting` event is dispatched immediately when Artisan starts running. Next, the `CommandStarting` event is dispatched immediately before a command runs. Finally, the `CommandFinished` event is dispatched once a command finishes executing.
+Artisan envía tres eventos cuando ejecuta comandos: `Illuminate\Console\Events\ArtisanStarting`, `Illuminate\Console\Events\CommandStarting`, y `Illuminate\Console\Events\CommandFinished`. El evento `ArtisanStarting` se envía inmediatamente cuando Artisan comienza a ejecutarse. A continuación, el evento `CommandStarting` se envía inmediatamente antes de que se ejecute un comando. Finalmente, el evento `CommandFinished` se envía una vez que un comando termina de ejecutarse.
